@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RID — Performance Marketing Consultant</title>
+<meta name="description" content="Analysis Before Advertising. RID membantu bisnis tumbuh lewat data, strategi, dan optimasi berkelanjutan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg: #0A0C10;
+  --surface: #12151B;
+  --surface-2: #191D25;
+  --line: rgba(255,255,255,0.08);
+  --text: #ECEEF1;
+  --muted: #8B92A3;
+  --accent: #D4A857;
+  --accent-2: #EAC77E;
+  --accent-soft: rgba(212,168,87,0.12);
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --container: 1160px;
+  --radius: 14px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{ color: inherit; text-decoration: none; }
+ul{ margin:0; padding:0; list-style:none; }
+img{ max-width:100%; display:block; }
+
+.mono{ font-family: var(--font-mono); }
+.italic{ font-style: italic; font-weight:300; color: var(--accent-2); }
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ============ LAYOUT HELPERS ============ */
+section{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 100px 32px;
+}
+
+.section-head{ max-width: 640px; margin-bottom: 56px; }
+.eyebrow{
+  display:inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.section-title{
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.25;
+  margin: 0;
+  color: var(--text);
+}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible{ opacity: 1; transform: translateY(0); }
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor:pointer;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color .25s ease;
+}
+.btn-primary{
+  background: var(--accent);
+  color: #16130A;
+}
+.btn-primary:hover{ transform: translateY(-2px); background: var(--accent-2); }
+.btn-outline{
+  border-color: var(--line);
+  color: var(--text);
+}
+.btn-outline:hover{ border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.btn-ghost{
+  border-color: var(--line);
+  padding: 10px 20px;
+  font-size: 13px;
+}
+.btn-ghost:hover{ border-color: var(--accent); color: var(--accent); }
+.btn-full{ width:100%; justify-content:center; }
+
+/* ============ NAV ============ */
+.nav{
+  position: sticky;
+  top:0;
+  z-index: 100;
+  background: rgba(10,12,16,0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 18px 32px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+}
+.logo{
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.logo-dot{ color: var(--accent); }
+.nav-links{ display:flex; gap: 32px; }
+.nav-links a{ font-size: 14px; color: var(--muted); transition: color .2s ease; }
+.nav-links a:hover{ color: var(--text); }
+.nav-toggle{ display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:6px; }
+.nav-toggle span{ width:22px; height:2px; background: var(--text); display:block; }
+
+/* ============ HERO ============ */
+.hero{
+  position: relative;
+  max-width: none;
+  padding: 90px 32px 0;
+  overflow: hidden;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(600px 400px at 85% 10%, var(--accent-soft), transparent 70%),
+    radial-gradient(500px 300px at 10% 40%, rgba(212,168,87,0.06), transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;
+  max-width: var(--container);
+  margin: 0 auto;
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items:center;
+  padding-bottom: 80px;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 7px 14px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+.badge-dot{ width:6px; height:6px; border-radius:50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.hero-title{
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.05;
+  margin: 0 0 24px;
+}
+.hero-sub{
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 460px;
+  margin: 0 0 36px;
+}
+.hero-actions{ display:flex; gap:16px; flex-wrap: wrap; }
+
+/* Hero chart card */
+.chart-card{
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.chart-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.chart-tag{
+  font-family: var(--font-mono);
+  color: var(--accent);
+  border: 1px solid var(--accent-soft);
+  background: var(--accent-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+.chart-svg{ width:100%; height: 160px; overflow: visible; }
+.chart-grid{ stroke: var(--line); stroke-width:1; }
+.chart-line{
+  fill:none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 2.2s ease forwards 0.4s;
+}
+.chart-area{ opacity: 0; animation: fadeIn 1s ease forwards 1.6s; }
+@keyframes draw{ to{ stroke-dashoffset: 0; } }
+@keyframes fadeIn{ to{ opacity: 1; } }
+.chart-foot{
+  display:flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* Stats row */
+.stats{
+  position:relative;
+  max-width: var(--container);
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+}
+.stat{
+  padding: 32px 8px;
+  text-align:center;
+  border-left: 1px solid var(--line);
+}
+.stat:first-child{ border-left:none; }
+.stat-num{
+  display:block;
+  font-size: clamp(24px, 3vw, 32px);
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.stat-label{ font-size: 13px; color: var(--muted); }
+
+/* ============ TRUSTED BY ============ */
+.trusted{ padding-top: 60px; padding-bottom: 60px; text-align:center; }
+.trusted-label{ font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+.trusted-track{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  gap: 40px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: #4C525F;
+}
+.trusted-track span:hover{ color: var(--muted); transition: color .2s ease; }
+
+/* ============ ABOUT ============ */
+.about-inner{
+  display:grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 64px;
+  align-items:center;
+}
+.about-frame{
+  aspect-ratio: 4/5;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--line);
+  display:flex;
+  align-items:flex-end;
+  padding: 20px;
+}
+.about-frame-label{ color: var(--muted); font-size: 12px; }
+.about-lead{
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 500;
+  color: var(--accent-2);
+  margin: 0 0 24px;
+}
+.about-body{ color: var(--muted); font-size: 16px; max-width: 520px; margin-bottom: 16px; }
+
+/* ============ PROCESS ============ */
+.process-list{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow:hidden;
+}
+.process-step{
+  background: var(--surface);
+  padding: 32px 24px;
+}
+.process-num{ color: var(--accent); font-size: 13px; display:block; margin-bottom: 20px; }
+.process-step h3{ font-family: var(--font-display); font-weight:500; font-size: 19px; margin: 0 0 10px; }
+.process-step p{ color: var(--muted); font-size: 14px; margin:0; }
+
+/* ============ SERVICES ============ */
+.services-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow:hidden;
+}
+.service-card{
+  background: var(--surface);
+  padding: 32px 26px;
+  transition: background .25s ease;
+}
+.service-card:hover{ background: var(--surface-2); }
+.service-icon{ font-size: 26px; display:block; margin-bottom: 18px; }
+.service-card h3{ font-family: var(--font-display); font-weight:500; font-size: 18px; margin: 0 0 8px; }
+.service-card p{ color: var(--muted); font-size: 14px; margin:0; }
+
+/* ============ CASE STUDIES ============ */
+.case-list{ display:flex; flex-direction:column; gap: 20px; }
+.case-card{
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+  background: var(--surface);
+  transition: border-color .25s ease;
+}
+.case-card:hover{ border-color: var(--accent-soft); }
+.case-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.case-client{ font-family: var(--font-display); font-size: 22px; font-weight:500; }
+.case-tag{
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.case-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.case-label{ display:block; font-size: 11px; letter-spacing: 0.1em; text-transform:uppercase; color: var(--accent); margin-bottom: 12px; }
+.case-grid ul li{ color: var(--muted); font-size: 14px; margin-bottom: 8px; padding-left: 14px; position:relative; }
+.case-grid ul li::before{ content:'—'; position:absolute; left:0; color: var(--line); }
+.case-grid ul li.highlight{ color: var(--text); font-weight: 500; }
+.case-grid ul li.highlight::before{ content:'✓'; color: var(--accent); }
+
+/* ============ WHY ============ */
+.why-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 24px 32px; }
+.why-item{
+  font-family: var(--font-display);
+  font-size: 19px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  display:flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.why-num{ color: var(--accent); font-size: 13px; }
+
+/* ============ TESTIMONIALS ============ */
+.testimonials{ display:flex; justify-content:center; }
+.testimonial-card{
+  max-width: 640px;
+  text-align:center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 48px;
+  background: var(--surface);
+}
+.stars{ color: var(--accent); letter-spacing: 4px; display:block; margin-bottom: 20px; }
+.testimonial-card p{ font-family: var(--font-display); font-size: 22px; font-weight: 400; line-height:1.5; margin: 0 0 20px; }
+.testimonial-name{ color: var(--muted); font-size: 13px; }
+
+/* ============ INSIGHTS ============ */
+.insights-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.insight-card{
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  background: var(--surface);
+  transition: border-color .25s ease, transform .25s ease;
+}
+.insight-card:hover{ border-color: var(--accent-soft); transform: translateY(-3px); }
+.insight-tag{ color: var(--accent); font-size: 11px; text-transform:uppercase; letter-spacing:.08em; }
+.insight-card h3{ font-family: var(--font-display); font-weight:500; font-size: 18px; margin: 12px 0 8px; }
+.insight-card p{ color: var(--muted); font-size: 14px; margin:0; }
+
+/* ============ RESOURCES ============ */
+.resources-inner{
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--surface-2), var(--surface));
+  padding: 48px;
+  display:grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items:center;
+}
+.resources-sub{ color: var(--muted); margin-top: 12px; }
+.resources-form{ display:flex; gap: 12px; }
+.resources-form input{
+  flex:1;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 13px 20px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.resources-form input::placeholder{ color: var(--muted); }
+
+/* ============ FAQ ============ */
+.faq-list{ display:flex; flex-direction:column; gap: 1px; background: var(--line); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden; }
+.faq-item{ background: var(--surface); }
+.faq-q{
+  width:100%;
+  text-align:left;
+  background:none;
+  border:none;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 17px;
+  padding: 22px 26px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.faq-plus{ color: var(--accent); font-family: var(--font-mono); transition: transform .25s ease; }
+.faq-item.open .faq-plus{ transform: rotate(45deg); }
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition: max-height .3s ease;
+}
+.faq-a p{ margin:0; padding: 0 26px 22px; color: var(--muted); font-size: 14px; max-width: 560px; }
+.faq-item.open .faq-a{ max-height: 200px; }
+
+/* ============ CONTACT ============ */
+.contact-inner{ display:grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.contact-sub{ color: var(--muted); margin: 16px 0 28px; max-width: 380px; }
+.contact-links{ display:flex; flex-direction:column; gap: 12px; }
+.contact-links a{ color: var(--muted); font-size: 14px; transition: color .2s ease; width: fit-content; }
+.contact-links a:hover{ color: var(--accent); }
+
+.contact-form{
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 32px;
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+.contact-form label{ font-size: 13px; color: var(--muted); display:flex; flex-direction:column; gap: 8px; }
+.contact-form input, .contact-form select, .contact-form textarea{
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  resize: vertical;
+}
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus{
+  border-color: var(--accent);
+}
+
+/* ============ FOOTER ============ */
+.footer{ max-width: none; padding: 48px 32px 32px; border-top: 1px solid var(--line); }
+.footer-inner{
+  max-width: var(--container);
+  margin: 0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.footer-links{ display:flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a, .footer-social a{ color: var(--muted); font-size: 13px; }
+.footer-links a:hover, .footer-social a:hover{ color: var(--text); }
+.footer-social{ display:flex; gap: 20px; }
+.footer-copy{ max-width: var(--container); margin: 0 auto; color: #4C525F; font-size: 12px; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px){
+  .hero-inner{ grid-template-columns: 1fr; }
+  .stats{ grid-template-columns: repeat(2,1fr); }
+  .stat:nth-child(3){ border-left:none; }
+  .stat{ border-bottom: 1px solid var(--line); }
+  .about-inner{ grid-template-columns: 1fr; }
+  .process-list{ grid-template-columns: repeat(2,1fr); }
+  .services-grid{ grid-template-columns: repeat(2,1fr); }
+  .case-grid{ grid-template-columns: 1fr; }
+  .why-grid{ grid-template-columns: repeat(2,1fr); }
+  .insights-grid{ grid-template-columns: 1fr; }
+  .resources-inner{ grid-template-columns: 1fr; }
+  .resources-form{ flex-direction:column; }
+  .contact-inner{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px){
+  section{ padding: 64px 20px; }
+  .nav-links{ display:none; }
+  .nav-toggle{ display:flex; }
+  .nav-cta{ display:none; }
+  .process-list{ grid-template-columns: 1fr; }
+  .services-grid{ grid-template-columns: 1fr; }
+  .why-grid{ grid-template-columns: 1fr; }
+  .stats{ grid-template-columns: repeat(2,1fr); }
+  .hero-actions{ flex-direction:column; }
+  .btn{ width:100%; justify-content:center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">RID<span class="logo-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Case Studies</a>
+      <a href="#process">Process</a>
+      <a href="#insights">Insights</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#contact" class="btn btn-ghost nav-cta">Book Consultation</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="badge reveal">
+        <span class="badge-dot"></span> Trusted by 20+ Brands
+      </span>
+      <h1 class="hero-title reveal">
+        Analysis <span class="italic">Before</span><br>
+        Advertising.
+      </h1>
+      <p class="hero-sub reveal">
+        Iklan yang baik bukan soal menghabiskan budget lebih besar —
+        tapi mengambil keputusan yang lebih tepat. RID membantu brand
+        tumbuh lewat data, strategi, dan optimasi yang berkelanjutan.
+      </p>
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn btn-primary">Book Consultation</a>
+        <a href="#work" class="btn btn-outline">View Case Studies →</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="chart-card">
+        <div class="chart-card-head">
+          <span>Campaign Performance</span>
+          <span class="chart-tag">ROAS</span>
+        </div>
+        <svg class="chart-svg" viewBox="0 0 360 160" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <polyline class="chart-grid" points="0,40 360,40" />
+          <polyline class="chart-grid" points="0,80 360,80" />
+          <polyline class="chart-grid" points="0,120 360,120" />
+          <path id="areaPath" class="chart-area" d="" fill="url(#areaFill)"/>
+          <polyline id="linePath" class="chart-line" points="" />
+        </svg>
+        <div class="chart-foot">
+          <div><span class="mono">Jan</span></div>
+          <div><span class="mono">Mar</span></div>
+          <div><span class="mono">Jun</span></div>
+          <div><span class="mono">Sep</span></div>
+          <div><span class="mono">Dec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance snapshot -->
+  <div class="stats reveal">
+    <div class="stat">
+      <span class="stat-num mono" data-count="500" data-suffix="M+" data-prefix="Rp">0</span>
+      <span class="stat-label">Revenue Influenced</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num mono" data-count="7" data-suffix="x">0</span>
+      <span class="stat-label">Average ROAS</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num mono" data-count="20" data-suffix="+">0</span>
+      <span class="stat-label">Brands Managed</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num mono" data-count="8" data-suffix=" Yrs">0</span>
+      <span class="stat-label">Experience</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUSTED BY ===== -->
+<section class="trusted">
+  <p class="trusted-label reveal">Dipercaya oleh brand-brand berikut</p>
+  <div class="trusted-track reveal">
+    <span>Concave Indonesia</span>
+    <span>The Conversion</span>
+    <span>Sinar Baru Property</span>
+    <span>Lumina Studio</span>
+    <span>Nusantara Home</span>
+    <span>Kopi Kanvas</span>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-frame">
+        <span class="mono about-frame-label">RID / Consultant</span>
+      </div>
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow reveal">About RID</span>
+      <p class="about-lead reveal">
+        Advertising isn't about spending more money.<br>
+        It's about making better decisions.
+      </p>
+      <p class="about-body reveal">
+        Saya membantu bisnis bertumbuh lewat pendekatan yang berbasis data,
+        strategi yang jelas, dan siklus optimasi yang tidak pernah berhenti.
+        Bukan sekadar menjalankan iklan — tapi memahami mengapa sebuah
+        campaign bekerja, dan mengapa yang lain tidak.
+      </p>
+      <p class="about-body reveal">
+        Delapan tahun di dunia performance marketing mengajarkan satu hal:
+        angka tidak pernah bohong, tapi harus dibaca dengan benar.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="process" id="process">
+  <div class="section-head">
+    <span class="eyebrow reveal">How I Work</span>
+    <h2 class="section-title reveal">Empat langkah, satu tujuan: pertumbuhan yang terukur.</h2>
+  </div>
+  <div class="process-list">
+    <div class="process-step reveal">
+      <span class="process-num mono">01</span>
+      <h3>Understand Business</h3>
+      <p>Menyelami model bisnis, target market, dan tujuan pertumbuhan sebelum satu rupiah pun dibelanjakan untuk iklan.</p>
+    </div>
+    <div class="process-step reveal">
+      <span class="process-num mono">02</span>
+      <h3>Analyze Data</h3>
+      <p>Membedah data historis, funnel, dan perilaku customer untuk menemukan celah dan peluang yang belum tergarap.</p>
+    </div>
+    <div class="process-step reveal">
+      <span class="process-num mono">03</span>
+      <h3>Build Strategy</h3>
+      <p>Merancang strategi campaign, struktur akun, dan pesan kreatif yang selaras dengan temuan data.</p>
+    </div>
+    <div class="process-step reveal">
+      <span class="process-num mono">04</span>
+      <h3>Launch &amp; Optimize</h3>
+      <p>Menjalankan campaign lalu mengoptimasinya secara berkelanjutan — karena hasil terbaik datang dari iterasi, bukan sekali jalan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="section-head">
+    <span class="eyebrow reveal">Services</span>
+    <h2 class="section-title reveal">Cara saya membantu bisnis Anda tumbuh.</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">📈</span>
+      <h3>Advertising Strategy</h3>
+      <p>Perencanaan strategi iklan menyeluruh yang selaras dengan tujuan bisnis jangka panjang.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📊</span>
+      <h3>Meta Ads Management</h3>
+      <p>Pengelolaan campaign Meta Ads dari struktur akun, creative testing, hingga optimasi harian.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🛒</span>
+      <h3>Shopee CPAS</h3>
+      <p>Integrasi Shopee CPAS untuk menghubungkan traffic iklan langsung ke conversion di marketplace.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📉</span>
+      <h3>Performance Audit</h3>
+      <p>Audit menyeluruh terhadap akun iklan yang sedang berjalan untuk menemukan kebocoran budget.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🎯</span>
+      <h3>Consultation</h3>
+      <p>Sesi konsultasi 1-on-1 untuk membahas tantangan spesifik bisnis dan langkah yang tepat.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASE STUDIES ===== -->
+<section class="work" id="work">
+  <div class="section-head">
+    <span class="eyebrow reveal">Case Studies</span>
+    <h2 class="section-title reveal">Hasil bicara lebih keras daripada janji.</h2>
+  </div>
+
+  <div class="case-list">
+    <article class="case-card reveal">
+      <div class="case-head">
+        <span class="case-client">Concave Indonesia</span>
+        <span class="case-tag">E-commerce</span>
+      </div>
+      <div class="case-grid">
+        <div>
+          <span class="case-label mono">Challenge</span>
+          <ul>
+            <li>Traffic tinggi, conversion rendah</li>
+            <li>Struktur campaign tidak efisien</li>
+          </ul>
+        </div>
+        <div>
+          <span class="case-label mono">Strategy</span>
+          <ul>
+            <li>Restructure campaign</li>
+            <li>Creative testing</li>
+            <li>Funnel optimization</li>
+          </ul>
+        </div>
+        <div>
+          <span class="case-label mono">Results</span>
+          <ul>
+            <li class="highlight">ROAS 7x</li>
+            <li class="highlight">Revenue Rp100M+</li>
+            <li class="highlight">CTR naik signifikan</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="case-card reveal">
+      <div class="case-head">
+        <span class="case-client">The Conversion</span>
+        <span class="case-tag">Digital Services</span>
+      </div>
+      <div class="case-grid">
+        <div>
+          <span class="case-label mono">Challenge</span>
+          <ul>
+            <li>Biaya akuisisi lead terlalu tinggi</li>
+            <li>Kualitas lead tidak konsisten</li>
+          </ul>
+        </div>
+        <div>
+          <span class="case-label mono">Strategy</span>
+          <ul>
+            <li>Audience re-segmentation</li>
+            <li>Landing page testing</li>
+            <li>Lead scoring funnel</li>
+          </ul>
+        </div>
+        <div>
+          <span class="case-label mono">Results</span>
+          <ul>
+            <li class="highlight">CPL turun 40%</li>
+            <li class="highlight">Lead qualified naik 2x</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="case-card reveal">
+      <div class="case-head">
+        <span class="case-client">Sinar Baru Property</span>
+        <span class="case-tag">Property</span>
+      </div>
+      <div class="case-grid">
+        <div>
+          <span class="case-label mono">Challenge</span>
+          <ul>
+            <li>Siklus closing panjang</li>
+            <li>Budget iklan tidak terukur</li>
+          </ul>
+        </div>
+        <div>
+          <span class="case-label mono">Strategy</span>
+          <ul>
+            <li>Multi-touch attribution</li>
+            <li>Retargeting bertingkat</li>
+          </ul>
+        </div>
+        <div>
+          <span class="case-label mono">Results</span>
+          <ul>
+            <li class="highlight">Booking naik 65%</li>
+            <li class="highlight">Cost per booking turun</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== WHY RID ===== -->
+<section class="why">
+  <div class="section-head">
+    <span class="eyebrow reveal">Why RID</span>
+    <h2 class="section-title reveal">Kenapa memilih RID.</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item reveal"><span class="mono why-num">01</span>Analysis Before Advertising</div>
+    <div class="why-item reveal"><span class="mono why-num">02</span>Data Driven</div>
+    <div class="why-item reveal"><span class="mono why-num">03</span>Performance Focused</div>
+    <div class="why-item reveal"><span class="mono why-num">04</span>Transparent Reporting</div>
+    <div class="why-item reveal"><span class="mono why-num">05</span>Multi Industry Experience</div>
+    <div class="why-item reveal"><span class="mono why-num">06</span>Long-term Growth</div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials">
+  <div class="testimonial-card reveal">
+    <span class="stars">★★★★★</span>
+    <p>"RID membantu efisiensi campaign kami meningkat secara signifikan — pendekatannya benar-benar berbasis data, bukan asumsi."</p>
+    <span class="testimonial-name mono">— Client, Concave Indonesia</span>
+  </div>
+</section>
+
+<!-- ===== INSIGHTS ===== -->
+<section class="insights" id="insights">
+  <div class="section-head">
+    <span class="eyebrow reveal">Insights</span>
+    <h2 class="section-title reveal">Tulisan seputar performance marketing.</h2>
+  </div>
+  <div class="insights-grid">
+    <div class="insight-card reveal">
+      <span class="mono insight-tag">Meta Ads</span>
+      <h3>Kenapa ROAS Turun?</h3>
+      <p>Membedah penyebab paling umum turunnya ROAS dan cara mendiagnosisnya sebelum panik ganti strategi.</p>
+    </div>
+    <div class="insight-card reveal">
+      <span class="mono insight-tag">Scaling</span>
+      <h3>Cara Scale Meta Ads dengan Aman</h3>
+      <p>Pendekatan bertahap untuk menaikkan budget tanpa merusak performa campaign yang sudah stabil.</p>
+    </div>
+    <div class="insight-card reveal">
+      <span class="mono insight-tag">Analysis</span>
+      <h3>Cara Membaca Data Campaign</h3>
+      <p>Metrik mana yang benar-benar penting, dan mana yang cuma terlihat penting.</p>
+    </div>
+    <div class="insight-card reveal">
+      <span class="mono insight-tag">Case Study</span>
+      <h3>Studi Kasus: Restructure yang Menaikkan ROAS 7x</h3>
+      <p>Langkah demi langkah proses restructuring campaign Concave Indonesia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESOURCES ===== -->
+<section class="resources">
+  <div class="resources-inner reveal">
+    <div>
+      <span class="eyebrow">Free Resources</span>
+      <h2 class="section-title">Checklist, audit, dan template siap pakai.</h2>
+      <p class="resources-sub">Performance Audit Checklist, Template KPI, dan Template Media Plan — gratis, langsung ke email Anda.</p>
+    </div>
+    <form class="resources-form" onsubmit="return false;">
+      <input type="email" placeholder="Email Anda" required>
+      <button type="submit" class="btn btn-primary">Kirim ke Saya</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="section-head">
+    <span class="eyebrow reveal">FAQ</span>
+    <h2 class="section-title reveal">Pertanyaan yang sering ditanyakan.</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <button class="faq-q">Berapa budget minimal untuk mulai?<span class="faq-plus">+</span></button>
+      <div class="faq-a"><p>Budget minimal disesuaikan dengan industri dan tujuan campaign — akan dibahas lebih detail saat sesi konsultasi awal.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">Platform apa saja yang ditangani?<span class="faq-plus">+</span></button>
+      <div class="faq-a"><p>Meta Ads (Facebook &amp; Instagram) dan Shopee CPAS, dengan pengalaman lintas platform lainnya sesuai kebutuhan bisnis.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">Apakah menerima klien UMKM?<span class="faq-plus">+</span></button>
+      <div class="faq-a"><p>Ya. RID bekerja dengan brand dari berbagai skala, selama ada kejelasan tujuan bisnis dan kesiapan data.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">Berapa lama hasil mulai terlihat?<span class="faq-plus">+</span></button>
+      <div class="faq-a"><p>Umumnya indikasi awal terlihat dalam 2–4 minggu, dengan optimasi berkelanjutan untuk hasil jangka panjang.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-copy reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2 class="section-title">Siap menganalisis sebelum beriklan?</h2>
+      <p class="contact-sub">Ceritakan bisnis Anda, dan kita bahas langkah paling tepat di sesi konsultasi.</p>
+      <div class="contact-links">
+        <a href="#">WhatsApp ↗</a>
+        <a href="#">LinkedIn ↗</a>
+        <a href="#">Instagram ↗</a>
+        <a href="#">Email ↗</a>
+      </div>
+    </div>
+    <form class="contact-form reveal" onsubmit="return false;">
+      <label>Name<input type="text" name="name" required></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Business<input type="text" name="business"></label>
+      <label>Monthly Ad Budget
+        <select name="budget">
+          <option>&lt; Rp10 Juta</option>
+          <option>Rp10 – 50 Juta</option>
+          <option>Rp50 – 200 Juta</option>
+          <option>&gt; Rp200 Juta</option>
+        </select>
+      </label>
+      <label>Message<textarea name="message" rows="3"></textarea></label>
+      <button type="submit" class="btn btn-primary btn-full">Book Consultation</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="#top" class="logo">RID<span class="logo-dot">.</span></a>
+    <nav class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#work">Case Studies</a>
+      <a href="#process">Process</a>
+      <a href="#insights">Insights</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a href="#">WhatsApp</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <p class="footer-copy mono">© 2026 RID — Performance Marketing Consultant. All rights reserved.</p>
+</footer>
+
+<script>
+// ===== Hero performance chart =====
+(function drawChart(){
+  const points = [140,132,120,110,118,95,88,70,60,48,30,20]; // y values, lower = higher performance
+  const w = 360, h = 160;
+  const stepX = w / (points.length - 1);
+  const coords = points.map((y, i) => `${i*stepX},${y}`);
+  const line = document.getElementById('linePath');
+  const area = document.getElementById('areaPath');
+  if(!line || !area) return;
+  line.setAttribute('points', coords.join(' '));
+  const areaD = `M0,${h} L` + coords.join(' L') + ` L${w},${h} Z`;
+  area.setAttribute('d', areaD);
+})();
+
+// ===== Count-up stats =====
+function countUp(el){
+  const target = parseFloat(el.dataset.count);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const start = performance.now();
+
+  function tick(now){
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = Math.round(target * eased);
+    el.textContent = prefix + value + suffix;
+    if(progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// ===== Scroll reveal (also triggers count-up once) =====
+const revealEls = document.querySelectorAll('.reveal');
+const statEls = document.querySelectorAll('.stat-num');
+let statsTriggered = false;
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('is-visible');
+
+      if(entry.target.classList.contains('stats') && !statsTriggered){
+        statsTriggered = true;
+        statEls.forEach(countUp);
+      }
+    }
+  });
+}, { threshold: 0.15 });
+
+revealEls.forEach(el => observer.observe(el));
+
+// stats block itself needs observing for the count-up trigger
+const statsBlock = document.querySelector('.stats');
+if(statsBlock) observer.observe(statsBlock);
+
+// ===== FAQ accordion =====
+document.querySelectorAll('.faq-item').forEach(item => {
+  const btn = item.querySelector('.faq-q');
+  btn.addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+// ===== Mobile nav toggle =====
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
+if(navToggle){
+  navToggle.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '100%';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = '#12151B';
+    navLinks.style.padding = '20px 32px';
+    navLinks.style.borderBottom = '1px solid rgba(255,255,255,0.08)';
+    navLinks.style.gap = '16px';
+  });
+}
+
+// Close mobile nav after clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if(window.innerWidth <= 640 && navLinks) navLinks.style.display = 'none';
+  });
+});
+
+</script>
+</body>
+</html>
